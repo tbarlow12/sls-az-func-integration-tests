@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Integration tests for the serverless-azure-functions plugin to the Serverless Framework",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "offline": "ts-node offlineTest.ts"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,8 @@
   },
   "homepage": "https://github.com/tbarlow12/sls-az-func-integration-tests#readme",
   "dependencies": {
-    "ts-node": "^8.6.2"
+    "@types/node": "^13.9.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
   }
 }
