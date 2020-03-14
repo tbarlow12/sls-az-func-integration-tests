@@ -4,8 +4,8 @@
   "description": "Integration tests for the serverless-azure-functions plugin to the Serverless Framework",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "offline": "ts-node offlineTest.ts",
-    "deploy": "ts-node deployTest.ts"
+    "offline": "ts-node tests/offlineTest.ts",
+    "deploy": "ts-node tests/deployTest.ts"
   },
   "repository": {
     "type": "git",
