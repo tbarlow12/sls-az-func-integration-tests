@@ -18,7 +18,6 @@ export function runTest(
     return new Promise<ResultSet>((resolve, reject) => {
       configurations.forEach(configuration => {
         try {
-          console.log("runTests " + JSON.stringify(parameters[configuration]));
           runValidationChain(`${configurationsPath}/${configuration}`, validations, {}, (testResults) => {
             results[configuration] = testResults;
             testsCompleted += 1;

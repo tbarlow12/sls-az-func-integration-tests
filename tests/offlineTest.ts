@@ -10,8 +10,8 @@ export async function OfflineTest(configurations: string[]): Promise<ResultSet> 
     {
       command: "sls offline build",
       stdout: {
-        shouldContainInterpolated: [
-          "Building ${commandName} service",
+        shouldContain: [
+          "Building offline service",
           "Finished building offline service"
         ]
       }
