@@ -1,11 +1,9 @@
+import { InterpolateParameters } from "./parameters";
+
 export interface OutputValidation {
   shouldBeExactly?: string;
   shouldContain?: string[];
   shouldContainInterpolated?: string[];
-}
-
-export interface InterpolateParameters {
-  [variableName: string]: string;
 }
 
 export function validateOutput(expected: OutputValidation, output: string, parameters: InterpolateParameters) {

@@ -9,3 +9,17 @@ export interface Configurations {
   "python37": any,
   "python38": any
 }
+
+export function getConfigurationsObject(): Configurations {
+  return {
+    "node10-linux": {},
+    "node10-linux-external": {},
+    "node10-windows": {},
+    "node12-linux": {},
+    "node12-linux-external": {},
+    "node12-windows": {},
+    "python36": {},
+    "python37": {},
+    "python38": {}
+  }
+}

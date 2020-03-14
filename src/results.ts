@@ -1,6 +1,6 @@
 import { Configurations } from "./configurations";
 
-export interface ResultSet extends Configurations {
+export interface ResultSet {
   [configuration: string]: ConfigurationResultSet
 }
 

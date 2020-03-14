@@ -1,7 +1,8 @@
-import { createSpawn } from "./spawn"
-import { OutputValidation, validateOutput, InterpolateParameters } from "./validate"
-import { getCommandName } from "./utils"
 import { ConfigurationResultSet } from "./results";
+import { createSpawn } from "./spawn";
+import { getCommandName } from "./utils";
+import { OutputValidation, validateOutput } from "./validate";
+import { InterpolateParameters } from "./parameters";
 
 export interface CommandValidation {
   command: string;
@@ -31,7 +32,6 @@ export function runValidationChain(
 
   const dirName = directory.replace("configurations/", "");
 
-  console.log(`${dirName} '${command}'`);
   createSpawn(
     directory,
     commandName,
