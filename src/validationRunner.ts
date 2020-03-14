@@ -1,6 +1,7 @@
 import { createSpawn } from "./spawn"
-import { OutputValidation, validateOutput } from "./validate"
+import { OutputValidation, validateOutput, InterpolateParameters } from "./validate"
 import { getCommandName } from "./utils"
+import { ConfigurationResultSet } from "./results";
 
 export interface CommandValidation {
   command: string;
@@ -8,14 +9,12 @@ export interface CommandValidation {
   stderr?: OutputValidation;
 }
 
-export interface ResultSet {
-  [ testName: string ]: {
-    passed: boolean;
-    message?: string;
-  }
-}
-
-export function runValidationChain(directory: string, validations: CommandValidation[], results: ResultSet, onFinish: (results: ResultSet) => void) {
+export function runValidationChain(
+    directory: string,
+    validations: CommandValidation[],
+    results: ConfigurationResultSet,
+    onFinish: (results: ConfigurationResultSet) => void,
+    parameters?: InterpolateParameters) {
   if (validations.length === 0) {
     onFinish(results);
     return;
@@ -39,8 +38,8 @@ export function runValidationChain(directory: string, validations: CommandValida
     args,
     (stdout, stderr) => {
       try {
-        validateOutput(validation.stdout, stdout);
-        validateOutput(validation.stderr, stderr);
+        validateOutput(validation.stdout, stdout, parameters);
+        validateOutput(validation.stderr, stderr, parameters);
         results[command] = {
           passed: true
         }

@@ -29,20 +29,15 @@ export function validateOutput(expected: OutputValidation, output: string, param
     }
   }
   if (shouldContainInterpolated) {
-    for (const item of shouldContainInterpolated) {
-
+    for (const interpolated of interpolateStrings(shouldContainInterpolated, parameters)) {
+      if (!output.includes(interpolated)) {
+        throw new Error(`Output did not contain '${interpolated}'`);
+      }
     }
   }
 }
 
 const variableRegex = /\${([a-zA-Z]+)}/g
-
-const interpolated = interpolateStrings(["This is ${myString} and this is ${myOtherString}"], {
-  myString: "hello",
-  myOtherString: "goodbye",
-});
-
-console.log(interpolated);
 
 function interpolateStrings(original: string[], parameters: InterpolateParameters): string[] {
   return original.map((s) => {
