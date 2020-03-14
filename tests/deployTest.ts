@@ -1,7 +1,8 @@
-import { runValidationChain, CommandValidation } from "./src/validationRunner"
-import { getDirectories } from "./src/utils"
+import { runValidationChain, CommandValidation } from "../src/validationRunner"
+import { getDirectories } from "../src/utils"
 
-const configurations = getDirectories("configurations");
+const configurationsPath = "../configurations";
+const configurations = getDirectories(configurationsPath);
 
 const validations: CommandValidation[] = [
   {
@@ -23,7 +24,7 @@ const results = {}
 let testsCompleted = 0;
 
 configurations.forEach(configuration => {
-  runValidationChain(`configurations/${configuration}`, validations, {}, (testResults) => {
+  runValidationChain(`${configurationsPath}/${configuration}`, validations, {}, (testResults) => {
     results[configuration] = testResults;
     testsCompleted += 1;
     if (testsCompleted === configurations.length) {
