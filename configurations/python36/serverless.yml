@@ -1,4 +1,4 @@
-service: http-python36
+service: python36
 
 provider:
   name: azure

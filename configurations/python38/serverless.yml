@@ -1,4 +1,4 @@
-service: http-python38
+service: python38
 
 provider:
   name: azure

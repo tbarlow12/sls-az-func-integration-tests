@@ -1,5 +1,5 @@
 {
-  "name": "test-node12-linux",
+  "name": "node12-linux",
   "version": "1.0.0",
   "description": "Azure Functions sample for the Serverless framework",
   "scripts": {

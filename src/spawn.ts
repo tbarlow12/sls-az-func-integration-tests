@@ -25,6 +25,7 @@ export function createSpawn(
 
   childProcess.on("error", (err) => {
     stderr += `Failed to start subprocess:\n${err.message} ${err.stack}`;
+    
   });
 
   childProcess.on("close", (code) => {
