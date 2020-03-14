@@ -38,11 +38,14 @@ export function validateOutput(expected: OutputValidation, output: string, param
 const variableRegex = /\${([a-zA-Z]+)}/g
 
 function interpolateStrings(original: string[], parameters: InterpolateParameters): string[] {
+  console.log(original);
   return original.map((s) => {
     const variables = s.match(variableRegex);
-    for (const m of variables) {
-      const key = m.replace("$", "").replace("{", "").replace("}", "");
-      s = s.replace(m, parameters[key]);
+    if (variables) {
+      for (const m of variables) {
+        const key = m.replace("$", "").replace("{", "").replace("}", "");
+        s = s.replace(m, parameters[key]);
+      }
     }
     return s;
   });

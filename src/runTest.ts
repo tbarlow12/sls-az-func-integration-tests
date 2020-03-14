@@ -17,17 +17,20 @@ export function runTest(
 
     return new Promise<ResultSet>((resolve, reject) => {
       configurations.forEach(configuration => {
-        runValidationChain(`${configurationsPath}/${configuration}`, validations, {}, (testResults) => {
-          results[configuration] = testResults;
-          testsCompleted += 1;
-          if (testsCompleted === configurations.length) {
-            resolve(results);
-          }
-        }, parameters[configuration]);
+        try {
+          console.log("runTests " + JSON.stringify(parameters[configuration]));
+          runValidationChain(`${configurationsPath}/${configuration}`, validations, {}, (testResults) => {
+            results[configuration] = testResults;
+            testsCompleted += 1;
+            if (testsCompleted === configurations.length) {
+              resolve(results);
+            }
+          }, parameters[configuration]);
+        } catch(err) {
+          reject(err);
+        }        
       });
     });
-
-    
 }
 
 export function logResults(test: (configurations: string[]) => Promise<ResultSet>, configurations?: string[]) {

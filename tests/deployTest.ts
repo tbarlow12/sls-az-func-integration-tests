@@ -8,7 +8,7 @@ export async function DeployTest(configurations: string[]): Promise<ResultSet> {
       command: "npm link serverless-azure-functions"
     },
     {
-      command: "sls deployf",
+      command: "sls deploy",
       stdout: {
         shouldContain: [
           "Logging into Azure",

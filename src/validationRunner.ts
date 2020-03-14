@@ -15,7 +15,7 @@ export function runValidationChain(
     validations: CommandValidation[],
     results: ConfigurationResultSet,
     onFinish: (results: ConfigurationResultSet) => void,
-    parameters?: InterpolateParameters) {
+    parameters: InterpolateParameters) {
   if (validations.length === 0) {
     onFinish(results);
     return;
@@ -37,27 +37,22 @@ export function runValidationChain(
     commandName,
     args,
     (stdout, stderr) => {
-      try {
-        validateOutput(validation.stdout, stdout, parameters);
-        validateOutput(validation.stderr, stderr, parameters);
-        results[command] = {
-          passed: true
-        }
-        // Recursive call for the rest of the chain
-        runValidationChain(directory, validations.slice(1, validations.length), results, onFinish);
-      } catch(err) {
-        results[command] = {
-          passed: false,
-          message: err.toString()
-        }
+      validateOutput(validation.stdout, stdout, parameters);
+      validateOutput(validation.stderr, stderr, parameters);
+      results[command] = {
+        passed: true
       }
+      // Recursive call for the rest of the chain
+      runValidationChain(directory, validations.slice(1, validations.length), results, onFinish, parameters);
       console.log(`${dirName} '${command}' finished`);
     },
     (stdout, stderr) => {
+      const message = `stdout:\n${stdout}\nstderr:\n${stderr}`
       results[command] = {
         passed: false,
-        message: `Stdout:\n${stdout}\nStderr:\n${stderr}`
+        message,
       }
+      throw new Error(`ERROR during '${command}' in '${dirName}':\n"  ${message}`);      
     }
   )
 }
