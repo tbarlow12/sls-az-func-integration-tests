@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: node10-linux
+service: node12-windows-webpack
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -20,8 +20,8 @@ service: node10-linux
 provider:
   name: azure
   region: West Europe
-  runtime: nodejs10
-  os: linux
+  runtime: nodejs12
+  os: windows
   # prefix: "sample"  # prefix of generated resource name
   # subscriptionId: A356AC8C-E310-44F4-BF85-C7F29044AF99
   # stage: dev
@@ -61,6 +61,7 @@ provider:
 
 plugins: # look for additional plugins in the community plugins repo: https://github.com/serverless/plugins
   - serverless-azure-functions
+  - serverless-webpack
 
 # you can add packaging information here
 package:
@@ -82,7 +83,7 @@ functions:
           methods:
             - GET
           authLevel: anonymous # can also be `function` or `admin`
-          
+
   # The following are a few examples of other events you can configure:
   # storageBlob:
   #   handler: src/handlers/storageBlob.printMessage
