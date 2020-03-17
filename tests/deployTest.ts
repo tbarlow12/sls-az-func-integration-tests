@@ -23,9 +23,6 @@ export async function DeployTest(configurations: string[]): Promise<ResultSet> {
     },
     {
       command: "sls invoke -f hello -d '{\"name\":\"Azure\"}'",
-    },
-    {
-      command: "sls remove --force"
     }
   ]
   return await runTest(validations, configurations, getDefaultConfigurationParameters());

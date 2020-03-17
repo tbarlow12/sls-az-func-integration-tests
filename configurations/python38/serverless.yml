@@ -29,4 +29,6 @@ functions:
     events:
       - http: true
         x-azure-settings:
+          methods:
+            - GET
           authLevel: anonymous
