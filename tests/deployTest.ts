@@ -1,6 +1,5 @@
-import { ResultSet } from "../src/results";
-import { runTest } from "../src/runTest";
-import { CommandValidation } from "../src/validationRunner";
+import { ResultSet, runTest, CommandValidation } from "clvr";
+import { getDefaultConfigurationParameters } from "../src/parameters";
 
 export async function DeployTest(configurations: string[]): Promise<ResultSet> {
   const validations: CommandValidation[] = [
@@ -29,5 +28,5 @@ export async function DeployTest(configurations: string[]): Promise<ResultSet> {
       command: "sls remove --force"
     }
   ]
-  return await runTest(validations, configurations);
+  return await runTest(validations, configurations, getDefaultConfigurationParameters());
 }

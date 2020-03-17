@@ -1,6 +1,4 @@
-import { ResultSet } from "../src/results"
-import { runTest } from "../src/runTest"
-import { CommandValidation } from "../src/validationRunner"
+import { ResultSet, runTest, CommandValidation } from "clvr";
 
 export async function OfflineTest(configurations: string[]): Promise<ResultSet> {
   const validations: CommandValidation[] = [
